@@ -16,7 +16,7 @@ using namespace std;
 
 //prototypes
 int validatefiles();
-void getToken(char * studentinfo, int position);
+char * getToken(char * studentinfo, int position, char * returnedWord);
 
 ifstream fin;
 ofstream fout;
@@ -28,15 +28,16 @@ int main()
 	validatefiles();
 	//variables 
 	char studentinfo[256];
+	char * returnedWord = new char[256];
 	int position = 0;	
-		cin >> position;	
 	while(!fin.eof())
 	{
 		
 		fin.getline(studentinfo, 256);
 		cout << studentinfo << endl;
 		cout << "What is the position?";
-		getToken(studentinfo, position);	
+		cin >> position;	
+		getToken(studentinfo, position, returnedWord);	
 	
 	}
 	
@@ -59,29 +60,31 @@ int validatefiles()
 	}
 	
 }
-void getToken(char * studentinfo, int position)
+char * getToken(char * studentinfo, int position, char * returnedWord)
 {
 	char * iterator = studentinfo;
 	int count = 0;
 	char space = 32; 
 	char tab = 9; 
-	char array[256];
-		
-	while(*iterator && count != position)
-	{
+	int singleLetter = 0;		
+	do {
+
 		if(* iterator == space || * iterator == tab)
 			count++;
-		do {
+		
+		while(* iterator == space || * iterator == tab)
 			iterator++;
-		} while(*iterator && * iterator == space || * iterator == tab);
+	} while(* iterator++ && count != position);
+	iterator--;
+	char * originaltoken = iterator;
+	while((* originaltoken != space) && (* originaltoken != tab))
+	{
+		returnedWord[singleLetter++] = * originaltoken;
+		originaltoken++;
 	}
-	cout << "iterator: " << iterator;
-//	while(* iterator != delimiter)
-//	{
-//		array[0] == * iterator;
-
-//	}
-
+	returnedWord[singleLetter++] = '\0';
+	cout << "HITHER: " << returnedWord << endl;
+	return returnedWord;
 	
 }
 

@@ -17,9 +17,8 @@ using namespace std;
 //prototypes
 int validatefiles();
 char *getToken(char *studentInfo, int position, char *returnedWord);
-void dropGrade(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6);
-
-
+void dropGrade(int grades[]);
+int getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6);
 
 ifstream fin;
 ofstream fout;
@@ -51,21 +50,18 @@ int main()
 		firstname = getToken(studentInfo, 0, returnedWord);
 		lastname  = getToken(studentInfo, 1, returnedWord);
 		ID        = atoi(getToken(studentInfo, 2, returnedWord));
-		grades[0]    = atoi(getToken(studentInfo, 3, returnedWord));
+		grades[0] = atoi(getToken(studentInfo, 3, returnedWord));
 		grade1    = atoi(getToken(studentInfo, 3, returnedWord));
-		grades[1]    = atoi(getToken(studentInfo, 4, returnedWord));
+		grades[1] = atoi(getToken(studentInfo, 4, returnedWord));
 		grade2    = atoi(getToken(studentInfo, 4, returnedWord));
-		grades[2]    = atoi(getToken(studentInfo, 5, returnedWord));
+		grades[2] = atoi(getToken(studentInfo, 5, returnedWord));
 		grade3    = atoi(getToken(studentInfo, 5, returnedWord));
-		grades[3]    = atoi(getToken(studentInfo, 6, returnedWord));
+		grades[3] = atoi(getToken(studentInfo, 6, returnedWord));
 		grade4    = atoi(getToken(studentInfo, 6, returnedWord));
-		grades[4]    = atoi(getToken(studentInfo, 7, returnedWord));
+		grades[4] = atoi(getToken(studentInfo, 7, returnedWord));
 		grade5    = atoi(getToken(studentInfo, 7, returnedWord));
-		grades[5]    = atoi(getToken(studentInfo, 8, returnedWord));
+		grades[5] = atoi(getToken(studentInfo, 8, returnedWord));
 		grade6    = atoi(getToken(studentInfo, 8, returnedWord));
-
-
-
 	
 		cout << "name: " << getToken(studentInfo, 0, returnedWord) << endl;
 		cout << "Lname: " << getToken(studentInfo, 1, returnedWord) << endl;
@@ -77,24 +73,7 @@ int main()
 		cout << "g5: " << grade5 << endl;
 		cout << "g6: " << grade6 << endl;
 
-int i;
-cout << "loopin biiiiiitch" << endl;
-for(i = 0; i < 6; i++)
-cout << "grade " << i << " is " << grades[i] << endl;
-
-int min = 100;
-for(i = 0; i < 6; i++)
-if(grades[i] < min)
-min = grades[i];
-
-cout << "lowest: " << min << endl;
-		dropGrade(grade1, grade2, grade3, grade4, grade5, grade6);
-
-
-
-
-
-
+		dropGrade(grades);
 
 	}
 	//close files
@@ -160,29 +139,29 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 
 }
 
-
 //function dropGrade
-void dropGrade(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6)
+void dropGrade(int grades[])
 {
-	int lowestGrade = grade1;
-
-	if(grade6 != -1) {
-		if(grade2 < lowestGrade)
-			lowestGrade = grade2; 
-		else if(grade3 < lowestGrade)
-			lowestGrade = grade3;
-		else if(grade4 < lowestGrade)
-			lowestGrade = grade4;
-		else if(grade5 < lowestGrade)
-			lowestGrade = grade5;
-		else if(grade6 < lowestGrade)
-			lowestGrade = grade6;
+	int min = 100;
+	for(int i = 0; i < 6; i++) {
+		cout << "grade " << i << " is " << grades[i] << endl;
+		if(grades[i] < min)
+			min = grades[i];
 	}
-	else
-		grade6 = 0;
-	cout << "lowest: " << lowestGrade << endl;
-
+	cout << "lowest: " << min << endl;
 
 
 }
 
+//function get average
+int getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6)
+{
+	double average = 0;
+
+
+
+
+
+
+
+}

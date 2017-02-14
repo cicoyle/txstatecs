@@ -20,7 +20,7 @@ char *getToken(char *studentInfo, int position, char *returnedWord);
 int detectError(int grades[], int grade6);
 int findLowestGrade(int grades[]);
 double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6, int lowestGrade);
-int convertAverageToLetterGrade(double average);
+void convertAverageToLetterGrade(double average);
 
 
 ifstream fin;
@@ -31,8 +31,10 @@ int main()
 	//open files
 	fin.open("student_input.dat");
 	fout.open("student_results.dat");
+
 	//call validatefiles to check that files opened
 	validatefiles();
+
 	//variables 
 	char studentInfo[256];
 	char *returnedWord = new char[256];
@@ -49,6 +51,7 @@ int main()
 	int grades[6] = {0};
 	int lowestGrade = 0;
 	double average = 0.0;
+
 	//read in and assign words to arrays while not end of file
 	while (fin.getline(studentInfo, 256)) {
 
@@ -77,18 +80,23 @@ int main()
 		cout << "g4: " << grade4 << endl;
 		cout << "g5: " << grade5 << endl;
 		cout << "g6: " << grade6 << endl;
-
+		
+		//call detect error function
 		detectError(grades, grade6);
+
+		//call find lowest grade function
 		lowestGrade = findLowestGrade(grades);
 
 		cout << "LOWESTGRADE in main: " << lowestGrade << endl;
 		
-
+		//call get average function
 		average = getAverage(grade1, grade2, grade3, grade4, grade5, grade6, lowestGrade);
 		cout << "average in main: " << average << endl;
 		
+		//call convert average to letter grade function
 //		convertAverageToLetterGrade(average);
 	}
+
 	//close files
 	fin.close();
 	fout.close();
@@ -104,6 +112,7 @@ int validatefiles()
 		cout << "Error! Input file did not open.";
 		return 1;
 	}
+
 	//check that output file opened
 	if (!fout) {
 		cout << "Error! Output file did not open.";
@@ -121,6 +130,7 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 	char space = 32;
 	char tab = 9;
 	int singleLetter = 0;
+
 	//do all this at least once while iterator increments and count is not position 
 	do {
 		//if iterator is a space or tab increment count
@@ -155,17 +165,14 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 
 //function to detect errors
 int detectError(int grades[], int grade6)
-{
-
-//	for(int i = 0; i < 6; i++)
-//	{
-//		cout << "GRADE IN ERROR FUNCTION: " << grades[i] << endl;
-//	}
-
+{	
+	//if statement to see if there is a grade 6
 	if(grade6 == 999) {
 		cout << "Warning. There are only 5 grades." << endl;
 		return 0;
 	}
+
+	//if statement to check if there are negative grades
 	for(int i = 0; i < 6; i++) {
 		if(grades[i] < 0) {
 			cout << "Error. A negative grade is present." << endl;
@@ -180,6 +187,8 @@ int detectError(int grades[], int grade6)
 int findLowestGrade(int grades[])
 {
 	int lowestGrade = 100;
+
+	//assign lowest grade in array to lowest grade
 	for(int i = 0; i < 6; i++) {
 		cout << "grade " << i << " is " << grades[i] << endl;
 		if(grades[i] < lowestGrade)
@@ -196,9 +205,12 @@ double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, in
 {
 	double average = 0.0;
 	
-	if(grade6 != 1000) 
+	//calculate average if there are 6 grades
+	if(grade6 != 999) 
 		average = ((grade1 + grade2 + grade3 + grade4 + grade5 + grade6)/6.0);
-	else if(grade6 = 1000)
+
+	//calculate average if there only 5 grades
+	else if(grade6 = 999)
 		average = ((grade1 + grade2 + grade3 + grade4 + grade5)/5.0);
 	cout << "average: "  << fixed << showpoint << setprecision (1) << average << endl;
 
@@ -207,7 +219,7 @@ double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, in
 }
 
 //functiong to convert average to letter grade
-int convertAverageToLetterGrade(double average)
+void convertAverageToLetterGrade(double average)
 {
 //	cout << "average in convert function: " << average << endl;
 

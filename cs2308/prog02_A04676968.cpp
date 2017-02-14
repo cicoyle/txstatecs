@@ -17,8 +17,8 @@ using namespace std;
 //prototypes
 int validatefiles();
 char *getToken(char *studentInfo, int position, char *returnedWord);
-void dropGrade(int grades[]);
-int getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6);
+int findLowestGrade(int grades[]);
+double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6, int lowestGrade);
 
 ifstream fin;
 ofstream fout;
@@ -42,8 +42,10 @@ int main()
 	int grade3 = 0;
 	int grade4 = 0;
 	int grade5 = 0;
-	int grade6 = -1;
-	int grades[6] = {-1};
+	int grade6 = 1000;
+	int grades[6] = {1000};
+	int lowestGrade = 0;
+	double average = 0.0;
 	//read in and assign words to arrays while not end of file
 	while (fin.getline(studentInfo, 256)) {
 
@@ -73,7 +75,13 @@ int main()
 		cout << "g5: " << grade5 << endl;
 		cout << "g6: " << grade6 << endl;
 
-		dropGrade(grades);
+		lowestGrade = findLowestGrade(grades);
+
+		cout << "LOWESTGRADE in main: " << lowestGrade << endl;
+		
+
+		average = getAverage(grade1, grade2, grade3, grade4, grade5, grade6, lowestGrade);
+		
 
 	}
 	//close files
@@ -134,33 +142,39 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 
 	//attach the null terminator to end of returned word array
 	returnedWord[singleLetter++] = '\0';
+
 	//return returned word array
 	return returnedWord;
 
 }
 
 //function dropGrade
-void dropGrade(int grades[])
+int findLowestGrade(int grades[])
 {
-	int min = 100;
+	int lowestGrade = 100;
 	for(int i = 0; i < 6; i++) {
 		cout << "grade " << i << " is " << grades[i] << endl;
-		if(grades[i] < min)
-			min = grades[i];
+		if(grades[i] < lowestGrade)
+			lowestGrade = grades[i];
 	}
-	cout << "lowest: " << min << endl;
+	cout << "lowest: " << lowestGrade << endl;
 
+	return lowestGrade;
 
 }
 
 //function get average
-int getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6)
+double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6, int lowestGrade)
 {
-	double average = 0;
+	double average = 0.0;
+	
+	if(grade6 != 1000) 
+		average = ((grade1 + grade2 + grade3 + grade4 + grade5 + grade6)/6.0);
+	else if(grade6 = 1000)
+		average = ((grade1 + grade2 + grade3 + grade4 + grade5)/5.0);
+	cout << "average: "  << fixed << showpoint << setprecision (1) << average << endl;
 
-
-
-
+	return average;
 
 
 

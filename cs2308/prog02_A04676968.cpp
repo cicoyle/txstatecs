@@ -157,7 +157,12 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 int detectError(int grades[], int grade6)
 {
 
-	if(grade6 = 999) {
+//	for(int i = 0; i < 6; i++)
+//	{
+//		cout << "GRADE IN ERROR FUNCTION: " << grades[i] << endl;
+//	}
+
+	if(grade6 == 999) {
 		cout << "Warning. There are only 5 grades." << endl;
 		return 0;
 	}
@@ -170,9 +175,6 @@ int detectError(int grades[], int grade6)
 			return 0;
 	}
 }
-
-
-
 
 //function dropGrade
 int findLowestGrade(int grades[])

@@ -17,8 +17,11 @@ using namespace std;
 //prototypes
 int validatefiles();
 char *getToken(char *studentInfo, int position, char *returnedWord);
+int detectError(int grades[], int grade6);
 int findLowestGrade(int grades[]);
 double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6, int lowestGrade);
+int convertAverageToLetterGrade(double average);
+
 
 ifstream fin;
 ofstream fout;
@@ -42,8 +45,8 @@ int main()
 	int grade3 = 0;
 	int grade4 = 0;
 	int grade5 = 0;
-	int grade6 = 1000;
-	int grades[6] = {1000};
+	int grade6 = 999;
+	int grades[6] = {0};
 	int lowestGrade = 0;
 	double average = 0.0;
 	//read in and assign words to arrays while not end of file
@@ -75,14 +78,16 @@ int main()
 		cout << "g5: " << grade5 << endl;
 		cout << "g6: " << grade6 << endl;
 
+		detectError(grades, grade6);
 		lowestGrade = findLowestGrade(grades);
 
 		cout << "LOWESTGRADE in main: " << lowestGrade << endl;
 		
 
 		average = getAverage(grade1, grade2, grade3, grade4, grade5, grade6, lowestGrade);
+		cout << "average in main: " << average << endl;
 		
-
+//		convertAverageToLetterGrade(average);
 	}
 	//close files
 	fin.close();
@@ -148,6 +153,27 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 
 }
 
+//function to detect errors
+int detectError(int grades[], int grade6)
+{
+
+	if(grade6 = 999) {
+		cout << "Warning. There are only 5 grades." << endl;
+		return 0;
+	}
+	for(int i = 0; i < 6; i++) {
+		if(grades[i] < 0) {
+			cout << "Error. A negative grade is present." << endl;
+			return -1;
+		}
+		else
+			return 0;
+	}
+}
+
+
+
+
 //function dropGrade
 int findLowestGrade(int grades[])
 {
@@ -176,6 +202,27 @@ double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, in
 
 	return average;
 
+}
+
+//functiong to convert average to letter grade
+int convertAverageToLetterGrade(double average)
+{
+//	cout << "average in convert function: " << average << endl;
+
+
+
+
+
+
+
+
 
 
 }
+
+
+
+
+
+
+

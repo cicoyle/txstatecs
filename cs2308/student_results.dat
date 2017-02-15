@@ -1,0 +1,13 @@
+      Last_name     First_name             ID  Average_Score          Grade
+
+         Zeller           Adam         452313           80.8              B
+          Young        Barbara         274253           82.8              B
+         Wilson           Carl         112235           90.7              A
+
+
+	Grade Totals:
+
+           A - 1
+           B - 2
+           C - 0
+           D - 0

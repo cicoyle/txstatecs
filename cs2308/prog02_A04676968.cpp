@@ -22,7 +22,6 @@ int findLowestGrade(int grades[]);
 double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, int grade6, int lowestGrade);
 char convertAverageToLetterGrade(double average);
 
-
 ifstream fin;
 ofstream fout;
 
@@ -82,32 +81,14 @@ int main()
 		grades[5] = atoi(getToken(studentInfo, 8, returnedWord));
 		grade6    = atoi(getToken(studentInfo, 8, returnedWord));
 
-
-
-	
-		cout << "name: " << getToken(studentInfo, 0, returnedWord) << endl;
-		cout << "Lname: " << getToken(studentInfo, 1, returnedWord) << endl;
-		cout << "ID: " << ID << endl;
-		cout << "g1: " << grade1 << endl;
-		cout << "g2: " << grade2 << endl;
-		cout << "g3: " << grade3 << endl;
-		cout << "g4: " << grade4 << endl;
-		cout << "g5: " << grade5 << endl;
-		cout << "g6: " << grade6 << endl;
-
-		
-
 		//call detect error function
 		detectError(grades, grade6);
 
 		//call find lowest grade function
 		lowestGrade = findLowestGrade(grades);
 
-		cout << "LOWESTGRADE in main: " << lowestGrade << endl;
-		
 		//call get average function
 		average = getAverage(grade1, grade2, grade3, grade4, grade5, grade6, lowestGrade);
-		cout << "average in main: " << average << endl;
 		
 		//call convert average to letter grade function
 		letterGrade = convertAverageToLetterGrade(average);
@@ -127,13 +108,10 @@ int main()
 	fout << setw(15) << "C - " << Ccount << endl;
 	fout << setw(15) << "D - " << Dcount << endl;
 
-
-
 	//close files
 	fin.close();
 	fout.close();
 	return 0;
-
 }
 
 //function validate files
@@ -150,7 +128,6 @@ int validatefiles()
 		cout << "Error! Output file did not open.";
 		return 1;
 	}
-
 }
 
 //function get token
@@ -192,7 +169,6 @@ char *getToken(char *studentInfo, int position, char *returnedWord)
 
 	//return returned word array
 	return returnedWord;
-
 }
 
 //function to detect errors
@@ -222,14 +198,11 @@ int findLowestGrade(int grades[])
 
 	//assign lowest grade in array to lowest grade
 	for(int i = 0; i < 6; i++) {
-		cout << "grade " << i << " is " << grades[i] << endl;
 		if(grades[i] < lowestGrade)
 			lowestGrade = grades[i];
 	}
-	cout << "lowest: " << lowestGrade << endl;
 
 	return lowestGrade;
-
 }
 
 //function get average
@@ -244,18 +217,17 @@ double getAverage(int grade1, int grade2, int grade3, int grade4, int grade5, in
 	//calculate average if there only 5 grades
 	else if(grade6 = 999)
 		average = ((grade1 + grade2 + grade3 + grade4 + grade5)/5.0);
-	cout << "average: "  << fixed << showpoint << setprecision (1) << average << endl;
 
 	return average;
-
 }
 
 //functiong to convert average to letter grade
 char convertAverageToLetterGrade(double average)
 {
-	cout << "average in convert function: " << average << endl;
 	char letterGrade;	
 	
+	//use if and else if statement to determine lettergrade
+	//increment that lettergrade count	
 	if(average >= 89.5) {
 		letterGrade = 'A';
 		Acount++;
@@ -276,24 +248,6 @@ char convertAverageToLetterGrade(double average)
 		Dcount++;
 	}
 		
-	cout << "Grade: " << letterGrade << endl;
- 
-	cout << "A: " << Acount << endl;
-	cout << "B: " << Bcount << endl;
-	cout << "C: " << Ccount << endl;
-	cout << "D: " << Dcount << endl;
 	return letterGrade;
-
 }
-
-
-
-
-
-
-
-
-
-
-
 

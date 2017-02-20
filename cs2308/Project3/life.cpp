@@ -11,7 +11,7 @@ Instructor: Komogortsev, TSU
 
 #include <iostream>
 #include <fstream>
-
+#include <cstdio>
 #include "life.h"
 
 using namespace std;
@@ -27,15 +27,19 @@ void populateWorld (const char * file)
 {
 	ifstream fin;
 	fin.open("glider_gun_fight.txt");
-/*	while(!eof()) {
-		while(fin.get(array))
+	int *array;	
+	if(!fin) 
+		cout << "Error. Input file did not open.";
+
+	while(!fin.eof()) {
+		while(fin)
 			COLUMNS++;
 	ROWS++;
-	array = new int *[ROWS];
-	for(int row = 0; row < rows; row++)
-		array[row] = new int[COLUMNS];
+//	array = new int *[ROWS];
+//	for(int row = 0; row < ROWS; row++)
+//		array[row] = new int[COLUMNS];
 	}
-*/
+
 }
 
 //This function outputs the grid for current generation (add high level 

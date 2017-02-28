@@ -29,7 +29,7 @@ const char FILE_NAME[] = "glider_gun_fight.txt";
 
 using namespace std;
 
-const int NUM_GENERATIONS = 10; //set to a smaller number for debugging
+const int NUM_GENERATIONS = 1; //set to a smaller number for debugging
 
 int main()
 {

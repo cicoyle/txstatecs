@@ -19,13 +19,13 @@ using namespace std;
 
 int ROWS;         //stores the number of rows in the grid
 int COLUMNS;      //stores the number of rows in the grid
-char ** world;	  //store values of world
-int ** NeighborCountGrid;	  //store value of neighbor counts for world
+char ** world;	  //store world
+int ** NeighborCountGrid;	  //store neighborcount
 
 //This function reads input file for subsequent prosessing (add high level 
 //description of your implementation logic) 
 
-void getGrid(const char * file)
+void prepass(const char * file)
 {
 	//open files
 	ifstream fin;
@@ -41,7 +41,7 @@ void getGrid(const char * file)
 	//count rows and columns
 	while(fin.get(cell))
 	{
-		if(cell == 48 || cell-1 == 48)
+		if(cell == 48 || cell == 49)
 			COLUMNS++;
 		if(cell == '\n')
 			ROWS++;
@@ -58,61 +58,56 @@ void getGrid(const char * file)
 int Count(int ro, int co)
 {
 	//initialize neighbor count
-	int count = 0;	
+	int neighbor = 0;	
 
-	//Upper left diagonal neighbor
+	//Upper left
 	if( *(* (world + (ro - 1)) + (co - 1)) == 49)
-		count++;
+		neighbor++;
 
-	//Left neighbor
+	//Left
 	if( *(* (world + ro) + (co - 1)) == 49)
-		count++;
+		neighbor++;
 	
-	//Bottom left diagonal neighbor
+	//Bottom left
 	if( *(* (world + (ro + 1)) + (co - 1)) == 49)
-		count++;
+		neighbor++;
 	
-	//Neighbor beneath
+	//Under
 	if( *(* (world + (ro + 1)) + co) == 49)
-		count++;
+		neighbor++;
 
-	//Bottom right diagonal neighbor
+	//Bottom right
 	if( *(* (world + (ro + 1)) + (co + 1)) == 49)
-		count++;
+		neighbor++;
 
-	//Right neighbor
+	//Right
 	if( *(* (world + ro) + (co + 1)) == 49)
-		count++;
+		neighbor++;
 
-	//Right upper diagonal neighbor
+	//Right upper
 	if( *(* (world + (ro - 1)) + (co + 1)) == 49)
-		count++;
+		neighbor++;
 
-	//Neighbor above
+	//Above
 	if( *(* (world + (ro - 1)) + co) == 49)
-		count++;
+		neighbor++;
 
 	//return total neighbor count
-	return count;
+	return neighbor;
 }
 
 void countNeighbors()
 {
 	cout << "NeighborCountGrid" << endl;
 	
-	//For every row and column with an organism, count neighbors
-	for(int r = 1; r < (ROWS + 1); r++)
-	{
-		for(int c = 1; c < (COLUMNS + 1); c++)
-		{
-			//get neighbor count
+	//count neighbors and output
+	for(int r = 1; r < (ROWS + 1); r++) {
+		for(int c = 1; c < (COLUMNS + 1); c++) {
 			*(* (NeighborCountGrid + r) + c) = Count(r,c);
-
 			cout << *(* (NeighborCountGrid + r) + c);
 		}
 		cout << endl;
 	}
-	
 }
 
 void populateWorld (const char * file)
@@ -124,7 +119,7 @@ void populateWorld (const char * file)
 	ifstream fin;//make file object
 
 	//Read in grid
-	getGrid(file);
+	prepass(file);
 
 	//Open file
 	fin.open(file);
@@ -162,7 +157,7 @@ void populateWorld (const char * file)
 			fin.get(cell);
 			
 			//If 1 or 0 read in value
-			if(cell == 48 || cell-1 == 48)
+			if(cell == 48 || cell == 49)
 				*(* (world + row) + col) = cell;
 		}
 		fin.ignore();
@@ -177,10 +172,8 @@ void showWorld ()
 
 	//show content for every row and column
 	//keep in mind buffer of zeros around world
-	for(int r = 1; r < ROWS + 1; r++)
-	{
-		for(int c = 1; c < COLUMNS + 1; c++)
-		{
+	for(int r = 1; r < ROWS + 1; r++) {
+		for(int c = 1; c < COLUMNS + 1; c++) {
 			cout << *(* (world + r) + c);
 		}
 		cout << endl;
@@ -196,48 +189,48 @@ void iterateGeneration ()
 	countNeighbors();
 
 	//Create and allocate memory for next generation
-	char ** nextGen;
-	nextGen = new char * [ROWS + 2];
+	char ** newgen;
+	newgen = new char * [ROWS + 2];
 	for(int row = 0; row < ROWS + 2; row++)
-		nextGen[row] = new char [COLUMNS + 2];
+		newgen[row] = new char [COLUMNS + 2];
 	
 	//Initialize next generation
 	for(int row = 0; row < ROWS + 2; row++)
 		for(int col = 0; col < COLUMNS + 2; col++)
-			*(* (nextGen + row) + col) = 48;
+			*(* (newgen + row) + col) = 48;
 
 	//For every organism, check if next generation organism becomes alive/dead
-	for(int row = 1; row < ROWS + 1; row++)
-	{
-		for(int col = 1; col < COLUMNS + 1; col++)
-		{
+	for(int row = 1; row < ROWS + 1; row++) {
+		for(int col = 1; col < COLUMNS + 1; col++) {
 			//Rule one: alive if world was dead with NeighborCountGrid is 3
 			if( (*(* (world + row) + col) == 48) && (*(* (NeighborCountGrid + row) + col) == 3))
-				*(* (nextGen + row) + col) = 49;
+				*(* (newgen + row) + col) = 49;
 
 			//Rule two: dead if NeighborCountGrid is 4 or more
 			if( (*(* (world + row) + col) == 49) && (*(* (NeighborCountGrid + row) + col) >= 4))
-				*(* (nextGen + row) + col) = 48;
+				*(* (newgen + row) + col) = 48;
 	
 			//Rule three: dead if NeighborCountGrid is one or fewer
 			if( (*(* (world + row) + col) == 49) && (*(* (NeighborCountGrid + row) + col) < 2))
-				*(* (nextGen + row) + col) = 48;
+				*(* (newgen + row) + col) = 48;
 
 			//Rule four: alive if NeighborCountGrid is 2 or more
-			if( (*(* (NeighborCountGrid + row) + col) == 2) || (*(* (NeighborCountGrid + row) + col) == 3))
-				*(* (nextGen + row) + col) = 49;		
+			if( (*(*(world + row) + col) == 49) &&
+			 (( *(* (NeighborCountGrid + row) + col) == 2) ||
+			 (*(* (NeighborCountGrid + row) + col) == 3)))
+				*(* (newgen + row) + col) = 49;		
 		}
 	}	
 
 	cout << "Next Gen: " << endl;
 	for(int r = 1; r < ROWS+1; r++) {
 		for(int c = 1; c < COLUMNS+1; c++) {
-			cout << *(*(nextGen+r)+c);
+			cout << *(*(newgen+r)+c);
 		}
 		cout << endl;
 	}
 
 	delete world;
-	world = nextGen;
+	world = newgen;
 }		
 

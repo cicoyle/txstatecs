@@ -61,35 +61,35 @@ int Count(int r, int c)
 	int neighbor = 0;	
 
 	//Upper left
-	if( *(* (world + (r - 1)) + (c - 1)) == 49)
+	if( *(* (world + (r-1)) + (c-1)) == 49)
 		neighbor++;
 
 	//Left
-	if( *(* (world + r) + (c - 1)) == 49)
+	if( *(* (world + r) + (c-1)) == 49)
 		neighbor++;
 	
 	//Bottom left
-	if( *(* (world + (r + 1)) + (c - 1)) == 49)
+	if( *(* (world + (r+1)) + (c-1)) == 49)
 		neighbor++;
 	
 	//Under
-	if( *(* (world + (r + 1)) + c) == 49)
+	if( *(* (world + (r+1)) + c) == 49)
 		neighbor++;
 
 	//Bottom right
-	if( *(* (world + (r + 1)) + (c + 1)) == 49)
+	if( *(* (world + (r+1)) + (c+1)) == 49)
 		neighbor++;
 
 	//Right
-	if( *(* (world + r) + (c + 1)) == 49)
+	if( *(* (world + r) + (c+1)) == 49)
 		neighbor++;
 
 	//Right upper
-	if( *(* (world + (r - 1)) + (c + 1)) == 49)
+	if( *(* (world + (r-1)) + (c+1)) == 49)
 		neighbor++;
 
 	//Above
-	if( *(* (world + (r - 1)) + c) == 49)
+	if( *(* (world + (r-1)) + c) == 49)
 		neighbor++;
 
 	//return total neighbor count
@@ -116,9 +116,11 @@ void populateWorld (const char * file)
 	ROWS = 0;
 	COLUMNS = 0;
 	char cell;
-	ifstream fin;//make file object
 
-	//Read in grid
+	//make file object
+	ifstream fin;
+
+	//Read in world
 	prepass(file);
 
 	//Open file
@@ -131,23 +133,20 @@ void populateWorld (const char * file)
 
 	//Allocate memory
 	world = new char * [ROWS + 2];
-	for(int row = 0; row < ROWS + 2; row++)
-		world[row] = new char [COLUMNS + 2];
-
-	//Initialize to 0
-	for(int row = 0; row < ROWS + 2; row++)
-		for(int col = 0; col < COLUMNS + 2; col++)
-			*(* (world+row) + col) = 48;
-
-	//Allocate memory
 	NeighborCountGrid = new int * [ROWS + 2];
-	for(int row = 0; row < ROWS + 2; row++)
-		NeighborCountGrid[row] = new int [COLUMNS + 2];
 
+	for(int row = 0; row < ROWS + 2; row++) {
+		world[row] = new char [COLUMNS + 2];
+		NeighborCountGrid[row] = new int [COLUMNS + 2];
+	}
+	
 	//Initialize to 0
-	for(int row = 0; row < ROWS + 2; row++)
-		for(int col = 0; col < COLUMNS + 2; col++)
-			*(* (world+row) + col) = 0;
+	for(int row = 0; row < ROWS + 2; row++) {
+		for(int col = 0; col < COLUMNS + 2; col++) {
+			*(* (world+row) + col) = 48;
+			*(* (NeighborCountGrid+row) + col) = 0;
+		}
+	}
 
 	//fill world
 	for(int row = 1; row < ROWS + 1; row++) {
@@ -179,26 +178,8 @@ void showWorld ()
 	
 }
 
-//This function creats new geneneration grid from the old generation grid
-//(add high level description of your implementation logic)
-void iterateGeneration ()
+void DeadOrAlive (char ** newgen)
 {
-	//call count neighbors
-	countNeighbors();
-
-	//create new gen
-	char ** newgen;
-
-	//allocate memory
-	newgen = new char * [ROWS + 2];
-	for(int row = 0; row < ROWS + 2; row++)
-		newgen[row] = new char [COLUMNS + 2];
-	
-	//Initialize to 0
-	for(int row = 0; row < ROWS + 2; row++)
-		for(int col = 0; col < COLUMNS + 2; col++)
-			*(* (newgen+row) + col) = 48;
-
 	//check if cell is dead or alive
 	for(int row = 1; row < ROWS + 1; row++) {
 		for(int col = 1; col < COLUMNS + 1; col++) {
@@ -221,6 +202,30 @@ void iterateGeneration ()
 				*(* (newgen+row) + col) = 49;		
 		}
 	}	
+}
+
+//This function creats new geneneration grid from the old generation grid
+//(add high level description of your implementation logic)
+void iterateGeneration ()
+{
+	//call count neighbors
+	countNeighbors();
+
+	//create new gen
+	char ** newgen;
+
+	//allocate memory
+	newgen = new char * [ROWS + 2];
+	for(int row = 0; row < ROWS + 2; row++)
+		newgen[row] = new char [COLUMNS + 2];
+	
+	//Initialize to 0
+	for(int row = 0; row < ROWS + 2; row++)
+		for(int col = 0; col < COLUMNS + 2; col++)
+			*(* (newgen+row) + col) = 48;
+
+	//call function dead or alive
+	DeadOrAlive(newgen);
 	
 	//display new gen
 	cout << "New Generation: " << endl;
@@ -230,8 +235,10 @@ void iterateGeneration ()
 		}
 		cout << endl;
 	}
+
 	//delete world content
 	delete world;
+
 	//assign world to new generation
 	world = newgen;
 }		

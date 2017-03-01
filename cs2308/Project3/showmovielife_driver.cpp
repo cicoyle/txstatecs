@@ -1,14 +1,12 @@
 /****************************************************
-Name:Cassandra Coyle
-Date:3/1/17
+Name: Cassandra Coyle
+Date: 2/28/17
 Problem Number:3
-Hours spent solving problem: 19
 CS2308
 Instructor: Komogortsev, TSU
 *****************************************************/
 
 // This is driver's code
-
 
 #ifdef linux
 #define LINUX true
@@ -24,14 +22,14 @@ Instructor: Komogortsev, TSU
 #include <fstream>
 #include <stdlib.h>
 #include <cstdlib>
-
+#include <unistd.h>
 #include "life.h"
 
 const char FILE_NAME[] = "glider_gun_fight.txt";
 
 using namespace std;
 
-const int NUM_GENERATIONS = 10; //set to a smaller number for debugging
+const int NUM_GENERATIONS = 100000; //set to a smaller number for debugging
 
 int main()
 {
@@ -48,9 +46,11 @@ int main()
            system("clear"); //Linux only
         iterateGeneration();
         showWorld();
+usleep(70000);
     }
     if (WINDOWS)
         system("cmd.exe /c PAUSE");
     return 0;
+
 }
 

@@ -225,11 +225,19 @@ void iterateGeneration ()
 
 			//Rule four: alive if NeighborCountGrid is 2 or more
 			if( (*(* (NeighborCountGrid + row) + col) == 2) || (*(* (NeighborCountGrid + row) + col) == 3))
-				*(* (nextGen + row) + col) = 49;
-
-
-		
+				*(* (nextGen + row) + col) = 49;		
 		}
 	}	
+
+	cout << "Next Gen: " << endl;
+	for(int r = 1; r < ROWS+1; r++) {
+		for(int c = 1; c < COLUMNS+1; c++) {
+			cout << *(*(nextGen+r)+c);
+		}
+		cout << endl;
+	}
+
+	delete world;
+	world = nextGen;
 }		
 

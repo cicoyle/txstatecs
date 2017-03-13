@@ -2,7 +2,7 @@
 Name: Cassandra Coyle
 Date: 3/12/17
 Problem Number: 4
-Hours spent solving the problem:
+Hours spent solving the problem: 8
 Instructor: Komogortsev, TSU
 *****************************************************/
 /*********************************
@@ -41,13 +41,13 @@ void initTsuPod ();
           o returns -1 if not enough memory to add the song
           o returns -2 for any other error (such as a blank title or artist)
  
- input parms - add nessesary parameters here
+ input parms - title, artist, size
  
- output parms - 
+ output parms - return code-successful or not
 */
 
 
-int addSong (/*add nessesary parameters here,*/ string newTitle, string newArtist, int size);
+int addSong (string newTitle, string newArtist, int size);
 
 
 
@@ -58,14 +58,14 @@ int addSong (/*add nessesary parameters here,*/ string newTitle, string newArtis
           o returns -1 if nothing is removed
     
           
-input parms - add nessesary parameters here
+input parms - title of song removed
  
-output parms - add nessesary parameters here
+output parms - return code-removal successful or not
 */   
 
 
 
-int removeSong (/*add nessesary parameters here,*/ string title);
+int removeSong (string title);
 
 
 
@@ -73,13 +73,13 @@ int removeSong (/*add nessesary parameters here,*/ string title);
 /* FUNCTION - void clearMemory
  clears all the songs from memory
 
-input parms - add nessesary parameters here
+input parms - none
  
-output parms - add nessesary parameters here
+output parms - none
 */
 
 
-void clearMemory(/*add nessesary parameters here*/);
+void clearMemory();
 
 
 /////////////////////////////
@@ -88,13 +88,13 @@ void clearMemory(/*add nessesary parameters here*/);
      format - slot #, Title, Artist, size in MB (one song per line)
      print "Empty" for any slots that do not contain a song
 
-input parms - add nessesary parameters here
+input parms - none
  
-//output parms - add nessesary parameters here
+//output parms - none
 */
     
 
-void showSongList (/*add nessesary parameters here*/);
+void showSongList ();
 
 
 ////////////////////////////
@@ -102,11 +102,11 @@ void showSongList (/*add nessesary parameters here*/);
       shuffles the songs into random order
           o will do nothing if there are less than two songs in the current list
 
-input parms - add nessesary parameters here
+input parms - none
  
-output parms - add nessesary parameters here
+output parms - none
 */
 
 
-void shuffle (/*add nessesary parameters here*/);
+void shuffle ();
 #endif

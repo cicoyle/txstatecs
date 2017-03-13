@@ -72,7 +72,7 @@ int addSong (string newTitle, string newArtist, int size)
     	}
     
 	//if more than 8 songs
-	if (i >= 8)
+	if (i >= NUM_SONGS)
 		return -2;
 }
 

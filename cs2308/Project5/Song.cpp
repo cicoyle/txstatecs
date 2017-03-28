@@ -5,10 +5,22 @@ Problem Number: 5
 Hours spent solving the problem: 20
 Instructor: Komogortsev, TSU
 *****************************************************/
-
+#include <iostream>
+//REMOVE THE ABOVE AFTER ITS ALL WORKING
 #include <string>
 #include "Song.h"
 
+
+// Song a, b;
+// if ( a < b )
+// ...
+// ????????????
+/*
+
+a.operator<(b)
+
+
+*/
 using namespace std;
 
 /*
@@ -54,6 +66,7 @@ bool Song::operator==(const Song &rhs)
         return true;
 }
 
+*/
 //Constructors
 Song::Song()
 {
@@ -67,9 +80,9 @@ Song::Song(string t, string a, int s)
     setSongTitle(t);
     setSongArtist(a);
     setSongSize(s);
+std::cout << "New song! " << t << ", by " << a << endl;
 }
 
 
-*/
 
 

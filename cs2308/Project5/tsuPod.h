@@ -16,30 +16,28 @@ You have to create file tsuPod.cpp with function definitions for the test progra
 
 using namespace std;
 
+
 class TsuPod
 {
 	private:
-	int maxMem;
-	int songCounter;
-	int memLeft;
+	int memory;
+	int songs; //count of songs
+	
 
 	public:
 	//constructors
-	TsuPod();
+	TsuPod(int mem, int songcount);
 
 
 	 //Functions
-	int addSong(Song);
-	int removeSong(Song);
+	int addSong(Song s);
+	int removeSong(Song s);
 	int clearSongList();
 	int sortSongList();
 	void showSongList();
-	void showTotalMemory();
-	void showRemainingMemory();
+	int getTotalMemory();
+	int getRemainingMemory();
 	int shuffleSongs();
-
-	//for memory usage
-	int getRemainingMem();
 
 
 };

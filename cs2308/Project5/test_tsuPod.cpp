@@ -15,7 +15,7 @@ using namespace std;
 
 int main() 
 {
-
-
-
+	TsuPod cassiePod(100, 25);
+	TsuPod samPod(121, 12);
+cassiePod.addSong(Song("Title", "Artist", 1));
 }

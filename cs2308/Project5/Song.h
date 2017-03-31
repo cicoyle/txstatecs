@@ -1,6 +1,6 @@
 /****************************************************
 Name: Cassandra Coyle
-Date: 3/24/17
+Date: 4/4/17
 Problem Number: 5
 Hours spent solving the problem: 20
 Instructor: Komogortsev, TSU
@@ -9,39 +9,34 @@ Instructor: Komogortsev, TSU
 #ifndef Song_h
 #define Song_h
 
-using namespace std;
-
 #include <string>
+
+using namespace std;
 
 class Song
 {
-    private:
-    string artist;
-    string title;
-    int    size;
-    
-    public:
-    //Accessors
-    string getSongTitle() const {return title;}
-    string getSongArtist() const {return artist;}
-    int    getSongSize() const {return size;}
+	private:
+	string artist;
+	string title;
+	int    size;
 
-    //Mutators
-    void   setSongTitle(string t) {title = t;}
-    void   setSongArtist(string a) {artist = a;}
-    void   setSongSize(int s) {size = s;}
-    
-    //Operator Overload
-    //bool operator<(const Song &rhs);
-    //bool operator>(const Song &rhs);
-    //bool operator==(const Song &rhs);
+	public:
+	//Accessors
+	string getTitle() const {return title;}
+	string getArtist() const {return artist;}
+	int getSize() const {return size;}
 
-    //Constructors
-    Song();
-    Song(string title, string artist, int size);
+	//Mutators
+	void setTitle(string t) {title = t;}
+	void setArtist(string a) {artist = a;}
+	void setSize(int s) {size = s;}
+
+	//Overload
+	//????????????
+
+	//Constructors
+	Song();
+	Song(string title, string artist, int size);
 
 };
-
-
 #endif
-

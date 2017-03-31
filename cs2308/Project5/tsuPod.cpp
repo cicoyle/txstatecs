@@ -1,121 +1,87 @@
 /****************************************************
 Name: Cassandra Coyle
-Date: 3/24/17
+Date: 4/4/17
 Problem Number: 5
 Hours spent solving the problem: 20
 Instructor: Komogortsev, TSU
 *****************************************************/
 #include <iostream>
 #include <fstream>
-#include <string>
 #include "tsuPod.h"
+#include <string>
 #include <iomanip>
 #include <cstdlib>
 #include <ctime>
+
+
 using namespace std;
 
 fstream iostuff;
 
-TsuPod::TsuPod(int mem, int songcount){
-cout << "new tsupod" << endl;
-memory = mem;
-songs = songcount;
+TsuPod::TsuPod(int mem, int songCount)
+{
+	cout << "NEW TSUPOD: " << endl;
+	memory = mem;
+	songs = songCount;
+	
 }
-//Functions
-/*	
-25;
-"7 Years	Lukas Graham	4";
-"Caroline	Amine	3";
-"Little Do You Know	Alex & Sierra	2";
-"Formation	Beyonce	2";
-"Closer	The Chainsmokers	1";
-"Fake Love	Drake	4";
-"Shape of You	Ed Sheeran	1";
-"My Name is	Eminem	2";
-"Work from Home	Fifth Harmony	3";
-"Never Be Like You	Flume	2";
-"I Hate You I Love You	Gnash	5";
-"No Role Modelz	J. Cole	2";
-"Issues	Julia Michaels	1";
-"Panda	Desiigner	3";
-"Black Beatles	Rae Sremmurd	5";
-"Lost Boy	Ruth B	2";
-"Side To Side	Ariana Grande	2";
-"Dont Tell Nobody	Tink	1";
-"Treat You Better	Shawn Mendez	3";
-"Climax	Usher	1";
-"Make Me (Cry)	Noah Cyrus	2";
-"Play That Song	Train	1";
-"Paris	The Chainsmokers	5";
-"Starboy	The Weeknd	3";
-"Flashlight	The Front Bottoms	2";
-*/
 
 
-
-//add the songs
+//Add desired song to playlist
 int TsuPod::addSong(Song s)
 {
-
-iostuff.open("tsupod_memory.dat", ios::out | ios::app | ios::binary);
-iostuff << s.getSongTitle() << s.getSongArtist() << s.getSongSize();
-iostuff.close();
-}
-
-//remove song
-int TsuPod::removeSong(Song)
-{
-
-
+	iostuff.open("tsupod_memory.dat", ios::out | ios::app | ios::binary);
+	iostuff << s.getTitle() << s.getArtist() << s.getSize() << endl;
+	iostuff.close();
 
 
 }
 
-//clear the song list
-int TsuPod::clearSongList()
+//Remove desired song to playlist
+int TsuPod::removeSong(Song s)
 {
 
 
 
 }
 
-//sort the song list
-int TsuPod::sortSongList()
+//Clear the song list
+int TsuPod::clearList()
 {
 
 
 
 }
 
-//show the song list
-void TsuPod::showSongList()
-{
-
-
-
-}
-
-//display the total memory
-int TsuPod::getTotalMemory()
-{
-
-return memory;
-
-}
-
-//shuffle the songs
-int TsuPod::shuffleSongs()
+//Sort the song list alphabetically
+int TsuPod::sortList()
 {
 
 
 }
 
-//get the remaining memory usage
-int TsuPod::getRemainingMemory()
+//Dislay the list to the console
+void TsuPod::showList()
 {
-
 
 
 }
 
+//Display the total memory space left over
+void TsuPod::getTotalMem()
+{
 
+
+}
+
+//Shuffle the song list into a different order
+int TsuPod::shuffle()
+{
+
+}
+
+//Get the remaining memory space left over
+int TsuPod::getRemainingMem()
+{
+
+}

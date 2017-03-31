@@ -1,46 +1,38 @@
 /****************************************************
 Name: Cassandra Coyle
-Date: 3/24/17
+Date: 4/4/17
 Problem Number: 5
 Hours spent solving the problem: 20
 Instructor: Komogortsev, TSU
 *****************************************************/
-/*********************************
-This header file provides the prototypes of the function definitions
-for the tsuPod project. This file has to be included in the program that tests the functionality of tsuPod.
-You have to create file tsuPod.cpp with function definitions for the test program to work.
-*********************************/
 #ifndef tsuPod_h
 #define tsuPod_h
 #include "Song.h"
 
 using namespace std;
 
-
 class TsuPod
 {
 	private:
 	int memory;
-	int songs; //count of songs
-	
+	int maxMem;
+	int  songs;
+	int songCounter;
+	int memoryLeft;
 
 	public:
-	//constructors
-	TsuPod(int mem, int songcount);
+	//Constructor
+	TsuPod(int mem, int songCount);
 
-
-	 //Functions
+	//Functions
 	int addSong(Song s);
 	int removeSong(Song s);
-	int clearSongList();
-	int sortSongList();
-	void showSongList();
-	int getTotalMemory();
-	int getRemainingMemory();
-	int shuffleSongs();
-
-
+	int clearList();
+	int sortList();
+	void showList();
+	void getTotalMem();
+	int shuffle();
+	int getRemainingMem();
 };
 
 #endif
-

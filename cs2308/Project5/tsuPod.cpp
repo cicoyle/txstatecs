@@ -23,6 +23,8 @@ TsuPod::TsuPod(int mem, int songCount)
 	cout << "NEW TSUPOD: " << endl;
 	memory = mem;
 	songs = songCount;
+	maxSongs = 25;
+	maxMem = 100;
 	
 }
 

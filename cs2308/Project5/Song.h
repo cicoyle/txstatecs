@@ -19,24 +19,31 @@ class Song
 	string artist;
 	string title;
 	int    size;
-
+	int    position;
+	
 	public:
+	//Mutators
+	void setTitle(string t) {title = t;}
+	void setArtist(string a) {artist = a;}
+	void setSize(int s) {size = s;}
 	//Accessors
 	string getTitle() const {return title;}
 	string getArtist() const {return artist;}
 	int getSize() const {return size;}
 
-	//Mutators
-	void setTitle(string t) {title = t;}
-	void setArtist(string a) {artist = a;}
-	void setSize(int s) {size = s;}
 
 	//Overload
 	//????????????
 
 	//Constructors
 	Song();
-	Song(string title, string artist, int size);
+	Song(string title, string artist, int size, int currentSize, int currentPosition);
+
+	
+
+
+
+
 
 };
 #endif

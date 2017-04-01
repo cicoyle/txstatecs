@@ -26,14 +26,61 @@ TsuPod::TsuPod(int mem, int songCount)
 	
 }
 
+//initialize tsupod
+int TsuPod::initializeTsuPod()
+{
+	//declare song object
+	Song s;
+
+	//open file in binary
+	iostuff.open("tsupod_memory.dat", ios::out | ios::app | ios::binary);
+	
+	//validate file
+	if(!iostuff)
+		return -1;
+
+	//initialize songs
+	for(int i = 0; i < songs; i++) {
+		iostuff.seekp((i)*sizeof(s), ios::beg);
+		iostuff.write(reinterpret_cast<char*>(&s), sizeof(s));
+	}
+
+//totalSongs++;
+
+
+
+//s.setTitle(t);
+//s.setArtist(a);
+//s.setSize(s);
+
+
+
+
+
+
+
+	//close file
+	iostuff.close();
+	
+	return 0;
+
+}
 
 //Add desired song to playlist
-int TsuPod::addSong(Song s)
+int TsuPod::addSong(string t, string a, int s, int songCount, int &totalSongs, int &totalMem)
 {
-	iostuff.open("tsupod_memory.dat", ios::out | ios::app | ios::binary);
-	iostuff << s.getTitle() << s.getArtist() << s.getSize() << endl;
-	iostuff.close();
-
+	cout << "Song " << songCount << ": " << t << " by " << a << " size: " <<  s << endl;
+	//if(songCount > songs)
+	//	return -2;
+	if(s < 0){
+		cout << "Size cannot be smaller than 0" << endl;
+		return -3;
+	}
+	if(t == "EMPTY" || a == "EMPTY") {
+		cout << "Not added. Song title/artist cannot be blank." << endl;
+		return -4;
+	}
+	
 
 }
 
@@ -63,7 +110,15 @@ int TsuPod::sortList()
 //Dislay the list to the console
 void TsuPod::showList()
 {
+	Song s;
+	
+	cout << "SONGS: " << endl;
 
+	for(int i = 0; i < songs; i++) {
+		iostuff.seekg((i)*sizeof(s), ios::beg);
+		iostuff.read((char *)&s, sizeof(s));
+	}
+cout << "title: " << s.getTitle() << endl;
 
 }
 

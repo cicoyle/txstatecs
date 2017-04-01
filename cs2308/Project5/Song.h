@@ -38,5 +38,11 @@ class Song
 	Song();
 	Song(string title, string artist, int size);
 
+	
+
+
+
+
+
 };
 #endif

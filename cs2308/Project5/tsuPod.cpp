@@ -23,6 +23,8 @@ TsuPod::TsuPod(int mem, int songCount)
 	cout << "NEW TSUPOD: " << endl;
 	memory = mem;
 	songs = songCount;
+	maxSongs = 25;
+	maxMem = 100;
 	
 }
 
@@ -31,9 +33,11 @@ TsuPod::TsuPod(int mem, int songCount)
 int TsuPod::addSong(Song s)
 {
 	iostuff.open("tsupod_memory.dat", ios::out | ios::app | ios::binary);
-	iostuff << s.getTitle() << s.getArtist() << s.getSize() << endl;
-	iostuff.close();
 
+	iostuff.write(reinterpret_cast<char*>(&s), sizeof(s));
+	iostuff.seekg(0L, ios::beg);
+	
+	iostuff.close();
 
 }
 
@@ -63,7 +67,9 @@ int TsuPod::sortList()
 //Dislay the list to the console
 void TsuPod::showList()
 {
-
+	Song s;
+	for(int i = 0; i < songs; i++)
+		cout << "READ: " << iostuff.read(reinterpret_cast<char*>(&s), sizeof(s)) << endl;
 
 }
 

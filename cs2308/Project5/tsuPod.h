@@ -19,7 +19,7 @@ class TsuPod
 	int  songs;
 	int songCounter;
 	int memoryLeft;
-
+	int maxSongs;
 	public:
 	//Constructor
 	TsuPod(int mem, int songCount);

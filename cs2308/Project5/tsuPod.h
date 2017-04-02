@@ -17,7 +17,7 @@ class TsuPod
 	int memory;
 	int maxMem;
 	int  songs;
-	int songCounter;
+	int songCount;
 	int memoryLeft;
 	int maxSongs;
 	public:
@@ -26,12 +26,12 @@ class TsuPod
 
 	//Functions
 	int initializeTsuPod();
-	int addSong(string t, string a, int s, int songCount, int &totalSong, int &totalMem);
+	int addSong(string t, string a, int s, int songNumber, int &totalSong, int &totalMem);
 	int removeSong(Song s);
 	int clearList();
 	int sortList();
 	void showList();
-	void getTotalMem();
+	int getTotalMem();
 	int shuffle();
 	int getRemainingMem();
 };

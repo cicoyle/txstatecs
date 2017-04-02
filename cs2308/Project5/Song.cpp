@@ -5,9 +5,8 @@ Problem Number: 5
 Hours spent solving the problem: 20
 Instructor: Komogortsev, TSU
 *****************************************************/
-#include <string.h>
+#include <string>
 #include "Song.h"
-#include <stdio.h>
 //Delete this
 #include <iostream>
 
@@ -31,13 +30,17 @@ Song::Song(string t, string a, int s, int currentSize, int currentPosition)
 	setTitle(t);
 	setArtist(a);
 	setSize(s);
-	std::cout << "new song: " << t << ", by " << a << endl;
+	std::cout << "new song: " << t << ", by " << a << "memory: " << s << endl;
+}
+
+/*
+const char* Song::getTitle() const		// Retrieves title from Song
+{
+	return title;
 }
 
 
 
-
-/*
 void Song::setArtist(char *songArtist)		// Sets artist private member within Song object
 {
 	strcpy(artist, songArtist);
@@ -63,10 +66,6 @@ const char* Song::getArtist() const		// Retrieves artist from Song
 	return artist;
 }
 
-const char* Song::getTitle() const		// Retrieves title from Song
-{
-	return title;
-}
 
 int Song::getSize() const			// Retrieves size from Song
 {

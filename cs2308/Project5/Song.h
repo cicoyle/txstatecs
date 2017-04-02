@@ -25,7 +25,7 @@ class Song
 	//Mutators
 	void setTitle(string t) {title = t;}
 	void setArtist(string a) {artist = a;}
-	void setSize(int s) {size = s;}
+	void setSize(int si) {size = si;}
 	//Accessors
 	string getTitle() const {return title;}
 	string getArtist() const {return artist;}

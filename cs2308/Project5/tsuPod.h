@@ -15,25 +15,33 @@ class TsuPod
 {
 	private:
 	int memory;
-	int maxMem;
+	int currentMem;
 	int  songs;
-	int songCount;
+	int currentSong;
 	int memoryLeft;
-	int maxSongs;
+	int * prefixSum;
+
+	void updatePrefixSum(int, int);
+	int lengthOf(int);
+	int getPrefixSum(int);
+	int insertSong(Song, int);
+	void printPrefixSum();
+
 	public:
 	//Constructor
 	TsuPod(int mem, int songCount);
 
 	//Functions
 	int initializeTsuPod();
-	int addSong(string t, string a, int s, int songNumber, int &totalSong, int &totalMem);
-	int removeSong(Song s);
+	int validateAddSong(string t, string a, int si, int currentMem);
+	int addSong(string t, string a, int si, int);
+	int removeSong(string t, string a, int si);
 	int clearList();
 	int sortList();
 	void showList();
 	int getTotalMem();
 	int shuffle();
-	int getRemainingMem();
+	int getRemainingMem(int);
 };
 
 #endif

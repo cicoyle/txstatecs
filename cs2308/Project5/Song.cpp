@@ -15,63 +15,26 @@ using namespace std;
 //Default Constructor
 Song::Song()
 {
-	size = 0;
-	position = 0;
 	setTitle("EMPTY");
 	setArtist("EMPTY");
 	setSize(0);
 }
 
 //Constructor
-Song::Song(string t, string a, int s, int currentSize, int currentPosition)
+Song::Song(string t, string a, int s)
 {
-	size = currentSize;
-	position = currentPosition;
 	setTitle(t);
 	setArtist(a);
 	setSize(s);
 	std::cout << "new song: " << t << ", by " << a << "memory: " << s << endl;
 }
 
-/*
-const char* Song::getTitle() const		// Retrieves title from Song
+int Song::binarySize() 
 {
-	return title;
+	return getTitle().size() + getArtist().size() + sizeof(int) + 2;
 }
 
 
-
-void Song::setArtist(char *songArtist)		// Sets artist private member within Song object
-{
-	strcpy(artist, songArtist);
-}
-
-void Song::setTitle(char *songTitle)		// Sets title private member within Song object
-{
-	strcpy(title, songTitle);
-}
-
-void Song::setSize(int songSize)		// Sets size private member within Song object
-{
-	size = songSize;
-}
-
-void Song::setPosition(int songNum)		// Sets position private member within Song object
-{
-	position = songNum;
-}
-
-const char* Song::getArtist() const		// Retrieves artist from Song
-{
-	return artist;
-}
-
-
-int Song::getSize() const			// Retrieves size from Song
-{
-	return size;
-}
-*/
 /*
 bool Song::operator > (const Song &s1)
 {

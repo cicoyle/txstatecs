@@ -16,10 +16,8 @@ using namespace std;
 class Song
 {
 	private:
-	string artist;
-	string title;
+	string artist, title;
 	int    size;
-	int    position;
 	
 	public:
 	//Mutators
@@ -27,17 +25,18 @@ class Song
 	void setArtist(string a) {artist = a;}
 	void setSize(int si) {size = si;}
 	//Accessors
-	string getTitle() const {return title;}
-	string getArtist() const {return artist;}
-	int getSize() const {return size;}
+	string getTitle() {return title;}
+	string getArtist() {return artist;}
+	int getSize() {return size;}
 
+	int binarySize();
 
 	//Overload
 	//????????????
 
 	//Constructors
 	Song();
-	Song(string title, string artist, int size, int currentSize, int currentPosition);
+	Song(string title, string artist, int size);
 
 	
 

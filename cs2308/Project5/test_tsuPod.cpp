@@ -55,8 +55,12 @@ int main()
 	retCode = tPod.addSong("Starboy", "The Weeknd", 3, 0);
 	retCode = tPod.addSong("Flashlight", "The Front Bottoms", 2, 0);
 
-	tPod.showList();
 	
+	tPod.showList();
+//	tPod.removeSong(0);
+	
+	//tPod.showList();
+	tPod.shuffle();
 	return 0;	
 }
 

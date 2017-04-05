@@ -35,7 +35,7 @@ class TsuPod
 	int initializeTsuPod();
 	int validateAddSong(string t, string a, int si, int currentMem);
 	int addSong(string t, string a, int si, int);
-	int removeSong(string t, string a, int si);
+	int removeSong(int);
 	int clearList();
 	int sortList();
 	void showList();

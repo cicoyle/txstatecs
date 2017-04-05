@@ -64,7 +64,7 @@ void TsuPod::updatePrefixSum(int posi, int delta)
 	cout << endl;
 	
 	*(prefixSum + posi) = *(prefixSum + posi) + delta;
-	if(++posi < (currentSong+1))
+	if(++posi < (currentSong + 1))
 		updatePrefixSum(posi, delta);
 
 }
@@ -74,7 +74,7 @@ int TsuPod::lengthOf(int posi)
 	if(posi<=0)
 		return *(prefixSum);
 	else
-		return (getPrefixSum(posi+1) - getPrefixSum(posi));
+		return (getPrefixSum(posi + 1) - getPrefixSum(posi));
 }
 
 int TsuPod::getPrefixSum(int position)
@@ -141,9 +141,8 @@ int TsuPod::insertSong (Song s, int position)
   	
 	//Show where insert point is
 	cout << "INSERT POINT: " << insertionPoint << endl;
-	cout << "blob size: " << s.binarySize() << endl;
-	cout << "w[0:" << insertionPoint << "] \t\t preinsert old file contents." <<
-    	endl;
+	cout << "binary size: " << s.binarySize() << endl;
+	cout << "w[0:" << insertionPoint << "] \t\t preinsert old file contents." << endl;
 
 	//Write the file up to insertion point
   	iostuff.write ((char *) temporaryArray, insertionPoint);
@@ -152,12 +151,14 @@ int TsuPod::insertSong (Song s, int position)
   	long pos = iostuff.tellp ();
   	cout << "w[" << pos;
   	
-	//Write title, artist, and sizee to file
+	//Write to file
 	iostuff.write (reinterpret_cast < char *>(title), s.getTitle ().size () + 1);
   	iostuff.write (reinterpret_cast < char *>(artist), s.getArtist ().size () + 1);
-  	iostuff.write (reinterpret_cast < char *>(&size), sizeof (int));
+// 	iostuff.put (size + '0');
+	iostuff.write (reinterpret_cast < char *>(&size), sizeof (int));
+//	iostuff.put (" ");
 
-	//Check where I am at in file
+	//Check position in file
   	pos = iostuff.tellp ();
   	cout << ":" << pos << "] \t new song\nw[" << pos << ":" << fileSize + s.binarySize ()
 	     << "] \t post insert old file contents." << endl;
@@ -239,11 +240,73 @@ int TsuPod::addSong(string t, string a, int si, int position)
 }
 
 //Remove desired song to playlist
-int TsuPod::removeSong(string t, string a, int si)
+int TsuPod::removeSong(int position)
 {
+	//TsuPod Temp(t, a, si);
+	
+/*
+	Song s;
+
+	//Open the file in binary
+	iostuff.open("tsupod_memory.dat", fstream::binary | fstream::out | fstream::in);
+
+	//Create char arry to allow deep copy of string
+	char title[s.getTitle().size() + 1];
+	strcpy(title, s.getTitle().c_str());
+
+	char artist[s.getArtist().size() + 1];
+	strcpy(artist, s.getArtist().c_str());
+	int size = s.getSize();
+	
+	
+	//Get file size and make temp variable
+	int fileSize = getPrefixSum(currentSong - 2);
+	void * temporaryFile = malloc(fileSize);
+
+	//Copy text over up to song position to be removed
+	iostuff.read((char *)temporaryFile, fileSize);
+	iostuff.close();
+
+	//Show how many bytes were copied
+	cout << "copied " << fileSize << " bytes from tsupod_memory.dat" << endl;
+	
+//	cout << "In remove song, I am here initially: " << removalPoint << endl;
+
+	iostuff.open("tsupod_memory.dat", fstream::binary | fstream::out | fstream::in);
+	
+		
+	//Write up to position that is going to be removed
+  	iostuff.write ((char *) temporaryFile, position);
+	
+	//get position in file
+	long posi = iostuff.tellp();
+
+//	iostuff.write((char *)getPrefixSum(position+1), fileSize);
+	//increment temp file pointer the size of song were removing then write again.
+
+	cout << "binary size: " << s.binarySize() << endl;
+
+//HITHER
+
+	//Helper variable to know where I am
+//	long pos = iostuff.tellp();
+//	cout << "w[" << pos << endl;
 
 
 
+
+//while position is not what is passed in
+
+//	myio.seekp((fileSize - s.blobSize - removalPoint), ios::beg);
+
+	//Write file after song that I want removed
+//	iostuff.write(reinterpret_cast<char*>(temporaryFile - removalPoint), (fileSize - removalPoint));
+	
+	cout << "Writing rest of file" << endl;
+	
+		
+	return 0;
+*/
 }
 
 //Clear the song list
@@ -257,7 +320,7 @@ int TsuPod::clearList()
 //Sort the song list alphabetically
 int TsuPod::sortList()
 {
-
+	
 
 }
 
@@ -322,6 +385,40 @@ int TsuPod::getTotalMem()
 int TsuPod::shuffle()
 {
 
+//shuffle position write it in that order
+	//generate seed
+	srand(time(0));
+
+	//variables
+	int temporaryArray[25];
+	int r = 0;
+	
+	//assign int array 0-24
+	cout << "tempArray values: "; 
+	for(int i = 0; i <= 24; i++) {
+		temporaryArray[i] = i; 
+		cout << temporaryArray[i] << " ";
+	}
+	cout << endl;
+	cout << "Shuffled array: ";
+	//randomly shuffle array contents
+	 for(int i = currentSong-1; i > 0; i--) {
+            r = rand() % (i + 1); 
+            int tempVariable = temporaryArray[i];
+	    temporaryArray[i] = temporaryArray[r];
+	    temporaryArray[r] = tempVariable;
+	    cout << temporaryArray[i] << " ";
+        }
+	cout << endl;
+	
+		
+
+	//assign array contents to song positions
+
+
+
+
+
 }
 
 //Get the remaining memory space left over
@@ -329,3 +426,32 @@ int TsuPod::getRemainingMem(int currentMem)
 {
 	return (getTotalMem() - currentMem);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

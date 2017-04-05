@@ -32,8 +32,11 @@ class Song
 	int binarySize();
 
 	//Overload
-	//????????????
-
+/*	bool operator >(const Song &s);
+	bool operator <(const Song &s);
+	bool operator ==(const Song &s);
+	bool operator !=(const Song &sBlank);
+*/	
 	//Constructors
 	Song();
 	Song(string title, string artist, int size);

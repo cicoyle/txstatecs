@@ -57,10 +57,19 @@ int main()
 
 	
 	tPod.showList();
-//	tPod.removeSong(0);
 	
+	TsuPod tempPod(100, 25);
+
+	tPod.removeSong("7 Years", "Lukas Graham", 4);	
+	
+
+/*	for(int index = 0; index < 100; index++) {
+		tPod.getSong(tPod.getRandomNum());
+		return 0;
+	}
+*/
 	//tPod.showList();
-	tPod.shuffle();
+	//tPod.shuffle();
 	return 0;	
 }
 

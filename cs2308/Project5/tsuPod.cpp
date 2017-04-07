@@ -56,12 +56,40 @@ int TsuPod::initializeTsuPod()
 
 	return 0;
 }
+Song TsuPod:: getWholeSong(int posi) 
+{
+	iostuff.open("tsupod_memory.dat", fstream::in | fstream::binary);
 
+	int binarySize = lengthOf(posi);
+	int size = 0;
+	char titleAndArtist[binarySize];
+
+	iostuff.seekg(getPrefixSum(posi), iostuff.beg);
+	iostuff.read(reinterpret_cast<char *>(titleAndArtist), binarySize - 4);
+	iostuff.read(reinterpret_cast<char *>(&size), sizeof(int));                                                                                       
+	char *artist = titleAndArtist;
+	
+	while (*(++artist) != '\0');
+		artist++;                                                                                                                                       
+                                                                                                                                                                        
+                //Title, artist variables                                                                                                                               
+                string t (titleAndArtist);                                                                                                                                        
+                string a (artist);                                                                                                                                      
+                                                                                                                                                                        
+                //Pass data to object                                                                                                                                   
+                Song s (t, a, size);                                                                                                                                    
+		
+//                cout << "TsuPod::showList::Song(\"" << s.getTitle () << "\", \"" << s.getArtist () << "\", " << s.getSize () << ")" << endl;
+		iostuff.close();         
+                return s;                                                                                                                                                               
+                  
+
+}
 void TsuPod::updatePrefixSum(int posi, int delta)
 {
-	cout << "update position: " << posi << "delta: " << delta << endl;
-	cout << "current value: " << *(prefixSum + posi) << " --- new value: " << *(prefixSum + posi);
-	cout << endl;
+//	cout << "update position: " << posi << "delta: " << delta << endl;
+//	cout << "current value: " << *(prefixSum + posi) << " --- new value: " << *(prefixSum + posi);
+//	cout << endl;
 	
 	*(prefixSum + posi) = *(prefixSum + posi) + delta;
 	if(++posi < (currentSong + 1))
@@ -87,7 +115,7 @@ int TsuPod::getPrefixSum(int position)
 
 void TsuPod::printPrefixSum()
 {
-	cout << "currentSong #: " << currentSong << endl;
+/*	cout << "currentSong #: " << currentSong << endl;
 	cout << "*(prefixSum + i):"<<endl;
 
 	for(int i = 0; i < songs; i++)
@@ -101,7 +129,7 @@ void TsuPod::printPrefixSum()
 	cout<< "lengthof(i):"<<endl;
 
 	for(int i = 0; i < songs; i++)
-		cout << "(" << i << " :: " << lengthOf(i) << endl;
+*///		cout << "(" << i << " :: " << lengthOf(i) << endl;
 }
 
 int TsuPod::insertSong (Song s, int position)
@@ -120,75 +148,73 @@ int TsuPod::insertSong (Song s, int position)
   	int fileSize = getPrefixSum(currentSong); //File size
   	void *temporaryArray = malloc(fileSize); //Temp variable to store file
   	
-	cout << "lastSong == " << lastSong << endl;
+//	cout << "lastSong == " << lastSong << endl;
   	
 	//Open file in binary
 	iostuff.open ("tsupod_memory.dat", fstream::binary | fstream::in | fstream::out);
 	
-	cout << "current song at insertion point: " << currentSong << endl;
-  	cout << "file size copied into mem: " << getPrefixSum(currentSong) << endl;
+//	cout << "current song at insertion point: " << currentSong << endl;
+  //	cout << "file size copied into mem: " << getPrefixSum(currentSong) << endl;
 
 	//Read in to tmpbuf the file and close file
   	iostuff.read ((char *) temporaryArray, fileSize);
   	iostuff.close ();
 
 	//Show how many bytes were copied
-  	cout << "copied " << fileSize << " bytes from tsupod_mem.dat" << endl;
-  	cout << "writing up to byte " << getPrefixSum (position) << endl;
+  //	cout << "copied " << fileSize << " bytes from tsupod_mem.dat" << endl;
+  //	cout << "writing up to byte " << getPrefixSum (position) << endl;
 
 	//Open file
   	iostuff.open ("tsupod_memory.dat", fstream::binary | fstream::in | fstream::out);
   	
 	//Show where insert point is
-	cout << "INSERT POINT: " << insertionPoint << endl;
-	cout << "binary size: " << s.binarySize() << endl;
-	cout << "w[0:" << insertionPoint << "] \t\t preinsert old file contents." << endl;
+//	cout << "INSERT POINT: " << insertionPoint << endl;
+//	cout << "binary size: " << s.binarySize() << endl;
+//	cout << "w[0:" << insertionPoint << "] \t\t preinsert old file contents." << endl;
 
 	//Write the file up to insertion point
   	iostuff.write ((char *) temporaryArray, insertionPoint);
 
 	//Variable to tell me where I am
   	long pos = iostuff.tellp ();
-  	cout << "w[" << pos;
+  //	cout << "w[" << pos;
   	
 	//Write to file
 	iostuff.write (reinterpret_cast < char *>(title), s.getTitle ().size () + 1);
   	iostuff.write (reinterpret_cast < char *>(artist), s.getArtist ().size () + 1);
-// 	iostuff.put (size + '0');
 	iostuff.write (reinterpret_cast < char *>(&size), sizeof (int));
-//	iostuff.put (" ");
 
 	//Check position in file
   	pos = iostuff.tellp ();
-  	cout << ":" << pos << "] \t new song\nw[" << pos << ":" << fileSize + s.binarySize ()
-	     << "] \t post insert old file contents." << endl;
+  //	cout << ":" << pos << "] \t new song\nw[" << pos << ":" << fileSize + s.binarySize ()
+//	     << "] \t post insert old file contents." << endl;
 
 	//Write the rest of the file after song was added
     	iostuff.write (reinterpret_cast < char *>(temporaryArray) + insertionPoint, fileSize - insertionPoint);
 	
-	cout << "writing end of file" << endl;
-	cout << "PRESHUFFLE DOWN FOR INSERT:" << endl;
-	printPrefixSum();
-	cout << "lengthOf(0): " << lengthOf(0);
+//	cout << "writing end of file" << endl;
+//	cout << "PRESHUFFLE DOWN FOR INSERT:" << endl;
+//	printPrefixSum();
+//	cout << "lengthOf(0): " << lengthOf(0);
 	
 	//Show me offsets for consumed songs
 	if(currentSong >= 1)
   		for (int i = currentSong; i >= position; i--)
 		{
-			cout << "moving offsets:\t pos:[" << i << "]v:" << *(prefixSum + i) << endl;
-			cout << "\tto pos:[" << i + 1 << "]v:" << *(prefixSum + i + 1) << endl;
+//			cout << "moving offsets:\t pos:[" << i << "]v:" << *(prefixSum + i) << endl;
+//			cout << "\tto pos:[" << i + 1 << "]v:" << *(prefixSum + i + 1) << endl;
 			*(prefixSum + i + 1) = *(prefixSum + i);
 		}
 
-	cout << "PREUPDATE:" << endl;
+//	cout << "PREUPDATE:" << endl;
 	
 	if(position == 0)
 		*(prefixSum) = s.binarySize();
 	
 	//Update offsets
 	updatePrefixSum (position + 1, s.binarySize());
-	cout << "postupdate!!!!:" << endl;
-	printPrefixSum();
+//	cout << "postupdate!!!!:" << endl;
+//	printPrefixSum();
 
   	//Close the file
   	iostuff.close ();
@@ -240,13 +266,15 @@ int TsuPod::addSong(string t, string a, int si, int position)
 }
 
 //Remove desired song to playlist
-int TsuPod::removeSong(int position)
+int TsuPod::removeSong(string t, string a, int si)
 {
 	//TsuPod Temp(t, a, si);
-	
-/*
-	Song s;
 
+//	Song s(t, a, si);
+
+//	s.getSong();	
+
+/*
 	//Open the file in binary
 	iostuff.open("tsupod_memory.dat", fstream::binary | fstream::out | fstream::in);
 
@@ -340,16 +368,16 @@ void TsuPod::showList()
       		int textSize = lengthOf(i);	//Size for text
       		char text[textSize];	//Holds title and artist
       		int size = 0;	//Holds size of song
-
-      		cout << "textSize == " << textSize;
-      		cout << "r[" << posi << ":";
+//
+  //    		cout << "textSize == " << textSize;
+    //  		cout << "r[" << posi << ":";
 
 		//Read the data to be able to print out
       		iostuff.read (reinterpret_cast < char *>(text), textSize - 4);
       		iostuff.read (reinterpret_cast < char *>(&size), sizeof (int));
 
       		posi = iostuff.tellg ();
-      		cout << posi << "] :: " << endl;
+      //		cout << posi << "] :: " << endl;
 
 		//Assign artist
       		char *artist = text;
@@ -403,11 +431,11 @@ int TsuPod::shuffle()
 	cout << "Shuffled array: ";
 	//randomly shuffle array contents
 	 for(int i = currentSong-1; i > 0; i--) {
-            r = rand() % (i + 1); 
-            int tempVariable = temporaryArray[i];
-	    temporaryArray[i] = temporaryArray[r];
-	    temporaryArray[r] = tempVariable;
-	    cout << temporaryArray[i] << " ";
+         	r = rand() % (i + 1); 
+         	int tempVariable = temporaryArray[i];
+	 	temporaryArray[i] = temporaryArray[r];
+	 	temporaryArray[r] = tempVariable;
+	 	cout << temporaryArray[i] << " ";
         }
 	cout << endl;
 	
@@ -426,32 +454,5 @@ int TsuPod::getRemainingMem(int currentMem)
 {
 	return (getTotalMem() - currentMem);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

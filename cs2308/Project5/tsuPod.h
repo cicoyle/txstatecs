@@ -2,7 +2,7 @@
 Name: Cassandra Coyle
 Date: 4/4/17
 Problem Number: 5
-Hours spent solving the problem: 20
+Hours spent solving the problem: 60
 Instructor: Komogortsev, TSU
 *****************************************************/
 #ifndef tsuPod_h

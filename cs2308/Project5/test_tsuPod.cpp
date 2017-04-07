@@ -2,7 +2,7 @@
 Name: Cassandra Coyle
 Date: 4/4/17
 Problem Number: 5
-Hours spent solving the problem: 20
+Hours spent solving the problem: 60
 Instructor: Komogortsev, TSU
 *****************************************************/
 #include <iostream>
@@ -14,13 +14,13 @@ using namespace std;
 int main()
 {	
 	//Tsupod Constructor pass max mem & max songs
-	TsuPod tPod(100, 25);
+	TsuPod CassiePod(100, 25);
 
 	//initialze variables
 	int retCode;
 
 	//call function to initialize tsupod
-	retCode = tPod.initializeTsuPod();
+	retCode = CassiePod.initializeTsuPod();
 	
 	//varify that file opened
 	if(retCode == -1) {
@@ -28,40 +28,70 @@ int main()
 		return -1;
 	}
 	
+
+
 	//add songs and test tsupod using retCode
-	retCode = tPod.addSong("7 Years", "Lukas Graham", 4, 0);
-	retCode = tPod.addSong("Caroline", "Amine", 3, 0);
-	retCode = tPod.addSong("Little Do You Know", "Alex & Sierra", 2, 0);
-	retCode = tPod.addSong("Formation", "Beyonce", 2, 0);
-	retCode = tPod.addSong("Closer", "The Chainsmokers", 1, 0);
-	retCode = tPod.addSong("Fake Love", "Drake", 4, 0);
-	retCode = tPod.addSong("Shape of You", "Ed Sheeran", 1, 0);
-	retCode = tPod.addSong("My Name is", "Eminem", 2, 0);
-	retCode = tPod.addSong("Work from Home", "Fifth Harmony", 3, 0);
-	retCode = tPod.addSong("Never Be Like You", "Flume", 2, 0);
-	retCode = tPod.addSong("I Hate You I Love You", "Gnash", 5, 0);
-	retCode = tPod.addSong("No Role Modelz", "J. Cole", 2, 0);
-	retCode = tPod.addSong("Issues", "Julia Michaels", 1, 0);
-	retCode = tPod.addSong("Panda", "Desiigner", 3, 0);
-	retCode = tPod.addSong("Black Beatles", "Rae Sremmurd", 5, 0);
-	retCode = tPod.addSong("Lost Boy", "Ruth B", 2, 0);
-	retCode = tPod.addSong("Side To Side", "Ariana Grande", 2, 0);
-	retCode = tPod.addSong("Dont Tell Nobody", "Tink", 1, 0);
-	retCode = tPod.addSong("Treat You Better", "Shawn Mendez", 3, 0);
-	retCode = tPod.addSong("Climax", "Usher", 1, 0);
-	retCode = tPod.addSong("Make Me (Cry)", "Noah Cyrus", 2, 0);
-	retCode = tPod.addSong("Play That Song", "Train", 1, 0);
-	retCode = tPod.addSong("Paris", "The Chainsmokers", 5, 0);
-	retCode = tPod.addSong("Starboy", "The Weeknd", 3, 0);
-	retCode = tPod.addSong("Flashlight", "The Front Bottoms", 2, 0);
+	retCode = CassiePod.addSong("7 Years", "Lukas Graham", 4, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Caroline", "Amine", 3, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Little Do You Know", "Alex & Sierra", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Formation", "Beyonce", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Closer", "The Chainsmokers", 1, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Fake Love", "Drake", 4, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Shape of You", "Ed Sheeran", 1, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("My Name is", "Eminem", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Work from Home", "Fifth Harmony", 3, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Never Be Like You", "Flume", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("I Hate You I Love You", "Gnash", 5, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("No Role Modelz", "J. Cole", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Issues", "Julia Michaels", 1, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Panda", "Desiigner", 3, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Black Beatles", "Rae Sremmurd", 5, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Lost Boy", "Ruth B", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Side To Side", "Ariana Grande", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Dont Tell Nobody", "Tink", 1, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Treat You Better", "Shawn Mendez", 3, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Climax", "Usher", 1, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Make Me (Cry)", "Noah Cyrus", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Play That Song", "Train", 1, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Paris", "The Chainsmokers", 5, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Starboy", "The Weeknd", 3, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Flashlight", "The Front Bottoms", 2, 0);
+	cout << "SUCCESS: " << retCode << endl;
+	retCode = CassiePod.addSong("Cold Water", "Justin Bieber", 3, 0);
+	cout << "UNSUCCESS: " << retCode << endl;
+
 
 	
-	tPod.showList();
-	
-	TsuPod tempPod(100, 25);
+	CassiePod.showList();
 
-	tPod.removeSong("7 Years", "Lukas Graham", 4);	
+	CassiePod.removeSong("7 Years", "Lukas Graham", 4);	
 	
+	CassiePod.clearList();
+	cout << "CLEARED: " << endl;		
 
 /*	for(int index = 0; index < 100; index++) {
 		tPod.getSong(tPod.getRandomNum());

@@ -36,7 +36,7 @@ int main() {
 	cout << "retCode = " << retCode << endl;
 
 	//song 2 = successful
-	Song CassieSong2("Issues", "Julia Michaels", 3); 
+	Song CassieSong2("Cold", "Julia Michaels", 3); 
 	retCode = CassiePod.addSong(CassieSong2);
 	cout << "retCode = " << retCode << endl;
 
@@ -46,7 +46,7 @@ int main() {
 	cout << "add retCode = " << retCode << endl;
 
 	//song 4 = unsuccessful due to blank title and artist
-	Song CassieSong4("I Spy", "Kyle", 600); 
+	Song CassieSong4("I Spy" , "Kyle", 600); 
 	retCode = CassiePod.addSong(CassieSong4);
 	cout << "add retCode = " << retCode << endl;
 

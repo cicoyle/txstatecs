@@ -19,7 +19,10 @@ int main() {
 	
 	//retcode variable	
 	int retCode;
-	
+
+Song CassieSong("Cold Like Minnesota", "Lil Yachty", 10);
+retCode = CassiePod.removeSong(CassieSong);
+cout << "remove retCode =" << retCode << endl;	
 	//song 0 = successful
 	Song CassieSong0("Blue Aint't Your Color", "Keith Urban", 1);
 	retCode = CassiePod.addSong(CassieSong0);
@@ -41,7 +44,7 @@ int main() {
 	cout << "add retCode = " << retCode << endl;
 
 	//song 4 = unsuccessful due to blank title and artist
-	Song CassieSong4(" ", " ", 5); 
+	Song CassieSong4("I Spy", "Kyle", 600); 
 	retCode = CassiePod.addSong(CassieSong4);
 	cout << "add retCode = " << retCode << endl;
 
@@ -60,13 +63,17 @@ int main() {
 	cout << "Songs added " << endl;
 	CassiePod.showList();
 
-	//remove song 2
+	//remove song 2 = successful
 	retCode = CassiePod.removeSong(CassieSong2); 
 	cout << endl <<  "remove retCode = " << retCode << endl;
 
-	//remove song 3
+	//remove song 3 = successful
 	retCode = CassiePod.removeSong(CassieSong3); 
 	cout << "remove retCode = " << retCode << endl;
+
+//	//remove song 7 = unsuccessful
+//	retCode = CassiePod.removeSong("Cookie", "R. Kelly", 7);
+//	cout << "remove retCode = " << retCode << endl;
 
 	//display list
 	cout << endl << "List with songs removed" << endl;

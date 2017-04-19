@@ -173,6 +173,7 @@ int TsuPod::removeSong(Song CassieSong) {
 		currentMem -= CassieSong.getSize();
 	}//close if
 	
+	
 	return 0;
 }
 
@@ -208,7 +209,7 @@ int TsuPod::sortList() {
 //shuffle songs
 int TsuPod::shuffle() {
 	//variables
-	int number = 0;
+	int number = -1;
 	Song tempVar;	
 
 	//pointers
@@ -222,7 +223,7 @@ int TsuPod::shuffle() {
 	//if head is null
 	if(head == NULL) {
 		cout << "Error. list is empty." << endl;
-		return -2;
+		return -1;
 	}//close if
 
 	//for loop to go through numberofsongs

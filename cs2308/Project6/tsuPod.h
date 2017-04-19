@@ -1,8 +1,8 @@
 /****************************************************
 Name: Cassandra Coyle
-Date: 4/15/17
+Date: 4/18/17
 Problem Number: 6
-Hours spent solving the problem: 10
+Hours spent solving the problem: 17
 Instructor: Komogortsev, TSU
 *****************************************************/
 #include "Song.h"

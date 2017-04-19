@@ -1,8 +1,8 @@
 /****************************************************
 Name: Cassandra Coyle
-Date: 4/15/17
+Date: 4/18/17
 Problem Number: 6
-Hours spent solving the problem: 10
+Hours spent solving the problem: 17
 Instructor: Komogortsev, TSU
 *****************************************************/
 #include <iostream>
@@ -21,7 +21,7 @@ using namespace std;
 TsuPod::TsuPod(int memory) {
 	//assign variables
 	memTotal = memory;
-	head = NULL;
+	head = '\0';
 	currentMem = 0;
 	NumberOfSongs = 0;
 }
@@ -70,7 +70,7 @@ int TsuPod::addSong(Song CassieSong) {
 
 	//assign new node 
 	newNode -> s = CassieSong;
-	newNode -> next = NULL;
+	newNode -> next = '\0';
 
 	//increment song count
 	NumberOfSongs++;	
@@ -79,7 +79,7 @@ int TsuPod::addSong(Song CassieSong) {
 	currentMem += CassieSong.getSize();	
 	
 	//if empty head is first node
-	if(head == NULL)
+	if(head == '\0')
 		head = newNode;
 
 	else {
@@ -87,7 +87,7 @@ int TsuPod::addSong(Song CassieSong) {
 		traversalPtr = head;
 
 		//traverse to find last node
-		while(traversalPtr -> next != NULL)
+		while(traversalPtr -> next != '\0')
 			traversalPtr = traversalPtr -> next;
 
 		//assign last node
@@ -107,14 +107,14 @@ int TsuPod::removeSong(Song CassieSong) {
 	ListNode *traversalPtr;
 
 	//assign pointers
-	previousNode = NULL;
+	previousNode = '\0';
 	traversalPtr = head;	
 
 	//while song is not found
 	while(songFound == false) {
 
 		//check if the head is null
-		if(head == NULL) {
+		if(head == '\0') {
 			cout << "ERROR. List is empty." << endl;
 			return -1;
 		}//close if
@@ -139,7 +139,7 @@ int TsuPod::removeSong(Song CassieSong) {
 
 			//while the traversal ptr is not null
 			// and while traversal ptr is not the song
-			while(traversalPtr != NULL && traversalPtr -> s != CassieSong) {
+			while(traversalPtr != '\0' && traversalPtr -> s != CassieSong) {
 				//assign previous node
 				previousNode = traversalPtr;
 
@@ -148,7 +148,7 @@ int TsuPod::removeSong(Song CassieSong) {
 			}//close else
 
 			//check if traversal ptr is not null
-			if(traversalPtr != NULL) {
+			if(traversalPtr != '\0') {
 				//assign previous nodes next to traversal prts next
 				previousNode -> next = traversalPtr -> next;
 
@@ -189,7 +189,7 @@ int TsuPod::sortList() {
 	basePtr = head;
 
 	//for loop to assign base ptr to head, base ptrs next is not null, base ptr is base ptrs next
-	for(basePtr = head; basePtr -> next != NULL; basePtr = basePtr -> next) {
+	for(basePtr = head; basePtr -> next != '\0'; basePtr = basePtr -> next) {
 		//assign traversal ptr to base ptr
 		traversalPtr = basePtr -> next;
 
@@ -221,7 +221,7 @@ int TsuPod::shuffle() {
 	ListNode *nodePtr = head;
 	
 	//if head is null
-	if(head == NULL) {
+	if(head == '\0') {
 		cout << "Error. list is empty." << endl;
 		return -1;
 	}//close if
@@ -263,7 +263,7 @@ void TsuPod::showList() {
 	traversalPtr = head;
 	
 	//while traversing through list
-	while(traversalPtr != NULL) {
+	while(traversalPtr != '\0') {
 		cout << traversalPtr -> s.getTitle() << " By: "
 		     << traversalPtr -> s.getArtist() << " "
 		     << " Size: : " << traversalPtr -> s.getSize()
@@ -297,19 +297,22 @@ int TsuPod::clearList() {
 	NumberOfSongs = 0;
 	
 	//while traversal ptr is not null
-	while(traversalPtr != NULL) {
+	while(traversalPtr != '\0') {
 		//heads next is traversal ptrs next
 		head -> next = traversalPtr -> next;
+
 		//traversals next is null
-		traversalPtr -> next = NULL;
+		traversalPtr -> next = '\0';
+
 		//delete traversal ptr
 		delete traversalPtr;
+
 		//assign traversal ptr
 		traversalPtr = head -> next;
 	}//close while
 
 	//assign head to null
-	head = NULL;
+	head = '\0';
 
 	return 0;
 }

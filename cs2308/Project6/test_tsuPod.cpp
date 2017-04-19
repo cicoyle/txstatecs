@@ -1,8 +1,8 @@
 /****************************************************
 Name: Cassandra Coyle
-Date: 4/15/17
+Date: 4/18/17
 Problem Number: 6
-Hours spent solving the problem: 10
+Hours spent solving the problem: 17
 Instructor: Komogortsev, TSU
 *****************************************************/
 
@@ -20,9 +20,11 @@ int main() {
 	//retcode variable	
 	int retCode;
 
-Song CassieSong("Cold Like Minnesota", "Lil Yachty", 10);
-retCode = CassiePod.removeSong(CassieSong);
-cout << "remove retCode =" << retCode << endl;	
+	//song = unsuccessful removal
+	Song CassieSong("Cold Like Minnesota", "Lil Yachty", 10);
+	retCode = CassiePod.removeSong(CassieSong);
+	cout << "remove retCode =" << retCode << endl;	
+	
 	//song 0 = successful
 	Song CassieSong0("Blue Aint't Your Color", "Keith Urban", 1);
 	retCode = CassiePod.addSong(CassieSong0);
@@ -70,10 +72,6 @@ cout << "remove retCode =" << retCode << endl;
 	//remove song 3 = successful
 	retCode = CassiePod.removeSong(CassieSong3); 
 	cout << "remove retCode = " << retCode << endl;
-
-//	//remove song 7 = unsuccessful
-//	retCode = CassiePod.removeSong("Cookie", "R. Kelly", 7);
-//	cout << "remove retCode = " << retCode << endl;
 
 	//display list
 	cout << endl << "List with songs removed" << endl;

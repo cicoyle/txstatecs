@@ -9,7 +9,7 @@ Instructor: Komogortsev, TSU
 
 #include "charStack.h"
 #include <iostream>
-#include<string.h>
+#include <string.h>
 
 using namespace std;
 
@@ -94,6 +94,7 @@ bool charStack::checkSpecialCase(char arry[]) {
         	
 		else if((arry[i] == ']') || (arry[i] == '}') || (arry[i] == ')')) {
        		 	if(checkParenthesis(arry[i], pancakeStack.pop()) == false) {
+				pancakeStack.missingCase(arry[i], pancakeStack.pop());
                 		result = false;
                 		break;
             		}
@@ -102,7 +103,32 @@ bool charStack::checkSpecialCase(char arry[]) {
   if(pancakeStack.isEmpty() == false)
         result = false;
 
-    return result;
+    	return result;
 }
 
+
+void charStack::missingCase(char ch1, char ch2) {
+/*    	int arrySize = strlen(arry);
+	charStack pancakeStack(arrySize);
+
+    	for(int i = 0; i < arrySize; i++) {
+        		
+       		 	if(checkParenthesis(arry[i], pancakeStack.pop()) == false) {
+				pancakeStack.missingCase(arry[i], pancakeStack.pop());
+                		result = false;
+                		break;
+*/  
+  	if(ch1 = '[' && ch2 != ']')
+		std::fout << " ]";
+    	if(ch1 = ']' && ch2 != '[')
+		std::fout << " [";
+    	if(ch1 = '(' && ch2 != ')')
+		std::fout << " )";
+    	if(ch1 = ')' && ch2 != '(')
+		std::fout << " (";
+    	if(ch1 = '{' && ch2 != '}')
+		std::fout << " }";
+    	if(ch1 = '}' && ch2 != '{')
+		std::fout << " {";
+}
 

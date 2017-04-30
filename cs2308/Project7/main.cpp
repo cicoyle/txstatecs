@@ -40,6 +40,7 @@ int main() {
 		cout << "Error. Output file did not open." << endl;
 		return -1;
 	}
+
 	while(getline(fin, tempVar)) { 
 		
 		int len = tempVar.length();
@@ -48,11 +49,14 @@ int main() {
 		strcpy(fileLine, tempVar.c_str());
 		
 		fout << fileLine;
-		if(stack.checkSpecialCase(fileLine) == true) 
+		if(stack.checkSpecialCase(fileLine) == true) { 
 			fout << " === valid expression " << endl;
-		else if(stack.checkSpecialCase(fileLine) == false) 
-			fout << " === missing: " << endl;
+		}
 	
+		else if(stack.checkSpecialCase(fileLine) == false) {
+			fout << " === missing: " << endl;
+		}
+			
 	}
 
 	return 0;

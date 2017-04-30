@@ -34,7 +34,7 @@ class charStack {
 		bool isEmpty() const;
 		bool checkParenthesis(char, char);
 		bool checkSpecialCase(char []);
-
+		void missingCase(char, char);
 };
 
 #endif

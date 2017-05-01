@@ -20,26 +20,26 @@ int main() {
 	
 	ifstream fin;
 	ofstream fout;
-
+		
 	string fileName;
-	string tempVar;
-	char * fileLine;		
-	
-	cout << "Enter valid input file name:  ";
-	cin >> fileName;
-
-	fin.open(fileName.c_str());
-	fout.open("exp_output.dat");
-
 	if(!fin) {
 		cout << "Error. Input file did not open." << endl;
 		return -1;
 	}
+	
+	cout << "Enter valid input file name:  ";
+	cin >> fileName;
+//	ofstream fout;
+	fin.open(fileName.c_str());
 
-	if(!fout) {
-		cout << "Error. Output file did not open." << endl;
-		return -1;
-	}
+	string tempVar;
+	char * fileLine;		
+	
+
+//	fin.open(fileName.c_str());
+//	fout.open("exp_output.dat");
+
+//	stack.checkInputFile();
 
 	while(getline(fin, tempVar)) { 
 		
@@ -48,17 +48,24 @@ int main() {
 	
 		strcpy(fileLine, tempVar.c_str());
 		
-		fout << fileLine;
-		if(stack.checkSpecialCase(fileLine) == true) { 
-			fout << " === valid expression " << endl;
-		}
-	
-		else if(stack.checkSpecialCase(fileLine) == false) {
+		bool retCode = stack.checkSpecialCase(fileLine);
+		
+		if(retCode == false)
 			fout << " === missing: " << endl;
-		}
+		else
+			fout << "=== valide expression" << endl;
+//		fout << fileLine;
+//		if(stack.checkSpecialCase(fileLine) == true) { 
+//			fout << " === valid expression " << endl;
+//		}
+	
+//		else if(stack.checkSpecialCase(fileLine) != true) {
+//			fout << "missing: " << endl;
+//		}
 			
 	}
-
+	fout.close();
+	fin.close();
 	return 0;
 }
 

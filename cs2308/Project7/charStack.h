@@ -28,13 +28,15 @@ class charStack {
 		//destructor
 		~charStack();
 		
+//		int checkInputFile();
 		void push(int);
 		char pop();
 		bool isFull() const;
 		bool isEmpty() const;
 		bool checkParenthesis(char, char);
 		bool checkSpecialCase(char []);
-		void missingCase(char, char);
+		void validateFile();
+//		void missingCase(char, char);
 };
 
 #endif

@@ -3,7 +3,7 @@ Name: Cassandra Coyle
 Date: 4/27/2017
 Problem Number: 7
 CS2308
-Hours worked on project: 10
+Hours worked on project: 21
 Instructor: Komogortsev, TSU
 *****************************************************/
 
@@ -18,7 +18,7 @@ class stack {
 
 	private:
 		//dynamic array 
-		char *stackArray;
+		char *arry;
 
 		//array size
 		int stackSize;
@@ -37,7 +37,7 @@ class stack {
 		bool isFull();
 		bool isEmpty();
 		bool checkMatch(char, char);
-		bool checkBalance(char equa []);		
+		bool checkElementsBalanced(char []);		
 };
 
 #endif

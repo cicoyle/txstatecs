@@ -1,0 +1,12 @@
+a+(b/c)*abcd(efgh  === missing: 1 ) 
+(60+[efg]+[efm)  === missing: 1 ] 
+70+1]  === missing: 1 [ 
+)aphids(  === missing: 1 ) 1 ( 
+]dkdjsfg-4tw[abds()  === missing: 1 ] 1 [ 
+t/6-[a+b)  === missing: 1 ] 1 ( 
+[a+b)]*ab]/(g[  === missing: 1 ) 1 ( 2 ] 2 [ 
+frog)))ab+c[[  === missing: 2 ] 3 ( 
+s+(pa)/m  === valid expression
+(l[i]+[z]/[ar(d+s)])  === valid expression
+(((((((((bacteria]]  === Error. There are more than 6 missing elements 
+(jh+)a/g*q))w[ty]][ga-((r((hf  === Error. There are more than 6 missing elements 

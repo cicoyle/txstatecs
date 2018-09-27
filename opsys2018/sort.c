@@ -33,12 +33,12 @@ int main() {
 	index = 0;
 	//while valid sort and then print
 	while(scanf("%s", states[index].stateName) != EOF && index++ < SIZE) {}
-		index = 0;
-		qsort(states, SIZE, sizeof (struct state), compare);
-		while(index < SIZE) {
-			printf("%s\n", states[index].stateName);
-			index++;
-		}	
+	index = 0;
+	qsort(states, SIZE, sizeof (struct state), compare);
+	while(index < SIZE) {
+		printf("%s\n", states[index].stateName);
+		index++;
+	}	
 
 	return 0;
 }

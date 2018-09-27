@@ -1,5 +1,12 @@
-//Cassandra Coyle sort.c OpSystems 2018
-//Lab 1.2 
+/*
+Cassandra Coyle sort.c OpSystems 2018
+Lab 1.2 
+
+Task:
+Read in a list of state abbreviations from stdin and display them in alphabetical order on screen.
+10 states max.
+*/
+
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
@@ -9,7 +16,7 @@ struct state{
 	char stateName[10];
 };
 
-//compare
+//compare state abbreviations
 static int compare(const void *a, const void *b) {
 	struct state *ia = (struct state *)a;
 	struct state *ib = (struct state *)b;
@@ -24,6 +31,7 @@ int main() {
 	memset(&states, 0, sizeof(states));
 	
 	index = 0;
+	//while valid sort and then print
 	while(scanf("%s", states[index].stateName) != EOF && index++ < SIZE) {}
 		index = 0;
 		qsort(states, SIZE, sizeof (struct state), compare);
@@ -31,6 +39,6 @@ int main() {
 			printf("%s\n", states[index].stateName);
 			index++;
 		}	
-	return 0;
 
+	return 0;
 }
